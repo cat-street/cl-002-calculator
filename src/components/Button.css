@@ -1,0 +1,69 @@
+.button {
+  font-family: inherit;
+  font-size: 30px;
+  border-radius: 7px;
+  border: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  letter-spacing: -2px;
+  outline: none;
+  position: relative;
+  background: linear-gradient(25deg, #525a65, #3b424c);
+  color: rgba(255, 255, 255, .8);
+  text-shadow: 0 0 2px rgba(255, 255, 255, .2);
+  box-shadow: inset 2px -1px 1px 0 rgba(255, 255, 255, .2),
+    inset -3px 2px 5px 0 rgba(0, 0, 0, .2),
+    4px 1px 1px 0 rgba(0, 0, 0, .5),
+    -1px -3px 1px 0 rgba(0, 0, 0, .5),
+    4px -3px 1px 0 rgba(0, 0, 0, .5),
+    -1px -1px 5px 0 rgba(0, 0, 0, .5);
+}
+
+.button:active {
+  box-shadow: inset 2px -1px 1px 0 rgba(255, 255, 255, .2),
+    inset -3px 2px 5px 0 rgba(0, 0, 0, .2),
+    3px 1px 1px 0 rgba(0, 0, 0, .5),
+    -1px -1px 1px 0 rgba(0, 0, 0, .5),
+    3px -1px 1px 0 rgba(0, 0, 0, .5),
+    -1px -1px 5px 0 rgba(0, 0, 0, .5),
+    4px 0 1px 0 rgba(255, 255, 255, .3);
+  transform: translate(1px, -1px);
+}
+
+.button[value="NEGATE"] {
+  font-size: 20px;
+}
+
+.button[value="SQUARE"],
+.button[value="BACKSPACE"] {
+  padding: 0;
+}
+
+.square-symbol {
+  width: 31px;
+  height: 19px;
+}
+
+.button_type_operation {
+  font-size: 36px;
+}
+
+.button_type_memory {
+  font-size: 24px;
+}
+
+.button_type_advanced {
+  font-size: 24px;
+}
+
+.button_type_reset {
+  background: linear-gradient(25deg, #9cc9dc, #68a4c0);
+}
+
+.backspace-symbol {
+  width: 24px;
+  height: 18px;
+}

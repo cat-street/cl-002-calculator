@@ -1,0 +1,43 @@
+.calculator__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calculator__heading {
+  font-family: 'Slabo 27px', serif;
+  text-shadow: 0 0 2px rgba(255, 255, 255, .2);
+}
+
+.calculator__title {
+  margin: 0 0 -4px;
+  font-size: 25px;
+}
+
+.calculator__subtitle {
+  margin: 0;
+  font-size: 18px;
+}
+
+.calculator__sun-battery-container {
+  border-radius: 3px;
+  border-right: 1px solid rgba(255, 255, 255, .2);
+}
+
+.calculator__sun-battery {
+  width: 107px;
+  height: 30px;
+  border-radius: 3px;
+  background-color: #3d2115;
+  box-shadow: 0 -3px 5px -3px rgba(255, 255, 255, .2),
+    5px 0 3px -5px rgba(255, 255, 255, .8),
+    0 2px 5px -2px rgba(0, 0, 0, .5),
+    -3px 0 3px -1px rgba(0, 0, 0, .8),
+    inset 0 -5px 3px -3px rgba(0, 0, 0, .5),
+    inset 5px 0 5px -2px rgba(0, 0, 0, .8);
+  background-image: repeating-linear-gradient(to right,
+      transparent,
+      transparent 26px,
+      rgba(255, 255, 255, .1) 26px,
+      rgba(255, 255, 255, .1) 27px);
+}

@@ -1,0 +1,6 @@
+.calculator__keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 30px) repeat(4, 40px);
+  gap: 15px;
+}
