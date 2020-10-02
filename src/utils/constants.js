@@ -23,7 +23,7 @@ const backspace = (
 );
 
 export const buttons = [
-  { id: 'clear', dataType: 'reset', value: 'C', children: 'C' },
+  { id: 'clear', dataType: 'clear', value: 'C', children: 'C' },
   { id: 'mrc', dataType: 'memory', value: 'MRC', children: 'MRC' },
   { id: 'mminus', dataType: 'memory', value: 'MMINUS', children: 'M-' },
   { id: 'mplus', dataType: 'memory', value: 'MPLUS', children: 'M+' },
@@ -54,7 +54,7 @@ export const buttons = [
   { id: 'three', dataType: 'number', value: 3, children: 3 },
   { id: 'minus', dataType: 'operation', value: 'SUBTRACT', children: '-' },
   { id: 'zero', dataType: 'number', value: 0, children: 0 },
-  { id: 'decimal', dataType: 'number', value: 'DECIMAL', children: '.' },
-  { id: 'equals', dataType: 'operation', value: 'EQUALS', children: '=' },
+  { id: 'decimal', dataType: 'number', value: '.', children: '.' },
+  { id: 'equals', dataType: 'equals', value: 'EQUALS', children: '=' },
   { id: 'add', dataType: 'operation', value: 'ADD', children: '+' },
 ];

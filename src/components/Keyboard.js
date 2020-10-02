@@ -3,11 +3,9 @@ import './Keyboard.css';
 import { buttons } from '../utils/constants'
 import { Button } from './Button';
 
-export function Keyboard({ setValue }) {
+export function Keyboard({ handleChange }) {
   const onClick = (dataType, value) => {
-    if (dataType === 'number') {
-      setValue(value);
-    }
+    handleChange({dataType, value});
   }
 
   return (
