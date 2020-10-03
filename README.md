@@ -1,29 +1,27 @@
-# CatLogic CL-001 Calculator
-**Self-study JavaScript Project**
+# CatLogic CL-002 Calculator
+**Self-study React Project**
 
-![Calculator Preview](./images/calc_gh.png)
+![Calculator Preview](./calc_gh.png)
 
 ### About
 
-Vanilla JS Calculator with a few advanced functions.
-* Current live version at https://cat-street.github.io/cl-001-calculator/
-* How-to blog [at Dev.to](https://dev.to/cat__logic/styling-the-catlogic-calculator-in-css-d7i)
+A React calculator with a few advanced functions.
+* Current live version at https://cat-street.github.io/cl-002-calculator/
+* How-to blog (design-related) [at Dev.to](https://dev.to/cat__logic/styling-the-catlogic-calculator-in-css-d7i)
 
 ### Under the hood
 
-* JavaScript ES6 syntax, CSS3 + semantic HTML5
-* Math.js library used for fixing floating point numbers precision problem
-* Errors for dividing by zero, square root for negative values and for results bigger than 9 999 999 999.
+* React, JavaScript ES6 syntax, CSS3 + semantic HTML5
+* Big.js library used calculations (fixes JS decimal numbers precision problem)
+* Errors for dividing by zero and for square root for negative values.
 * Memory function
 * Backspace functionality
-* Imitates the behavior of a physical calculator
-* Supports multiple operations without pressing 'equals' and multiple 'equals' pressing.
-* Logs operations to console.
+* Imitates a behavior of a real-life calculator
+* Immediate execution logic
+* Supports chain operations without pressing 'equals' and multiple 'equals' pressing.
 * Designed by pure CSS shadows and borders.
-* Naming by BEM.
+* HTML/CSS naming by BEM.
 
 ### To-do
 
-* Memory reset function
-* Logging of square root and percents
 * Keyboard input
