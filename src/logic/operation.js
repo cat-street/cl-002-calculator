@@ -1,6 +1,7 @@
 import Big from 'big.js';
 
 export function operation(firstValue, operation, secondValue) {
+  /** TODO: Handle big numbers */
   const first = Big(firstValue);
   const second = Big(secondValue);
 

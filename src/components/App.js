@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="calculator">
       <Top />
-      <Screen value={state.screenValue || 0} />
+      <Screen value={state.screenValue || '0'} />
       <Keyboard handleChange={handleChange} />
     </div>
   );

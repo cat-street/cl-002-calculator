@@ -1,7 +1,6 @@
 import React from 'react';
 import './Screen.css';
 
-/** TODO: Screen limit */
 export function Screen({ value }) {
   return (
     <div className="calculator__screen-container">
@@ -11,7 +10,7 @@ export function Screen({ value }) {
         type="text"
         className="calculator__screen"
         name="screen"
-        value={value}
+        value={value.slice(0, 10)}
         maxLength="10"
         disabled
       />
