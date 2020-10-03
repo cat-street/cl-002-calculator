@@ -17,6 +17,11 @@ export function calculation({ dataType, value }, state, setState) {
     }
     /** Save first value and start next value if operation was pressed */
     if (currentOperation) {
+      /** Negate value if minus was pressed after first operation */
+      if (tempOperator) {
+        valueToAdd = -valueToAdd;
+        tempOperator = null;
+      }
       setState({
         ...state,
         screenValue: valueToAdd.toString(),
@@ -37,6 +42,7 @@ export function calculation({ dataType, value }, state, setState) {
     /** Set temporary operator for negation */
     if (state.operator && value === 'SUBTRACT') {
       tempOperator = value;
+      return;
     }
     currentOperation = value;
     setState({ ...state, operator: value });
