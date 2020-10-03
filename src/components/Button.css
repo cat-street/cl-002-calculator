@@ -42,11 +42,6 @@
   padding: 0;
 }
 
-.square-symbol {
-  width: 31px;
-  height: 19px;
-}
-
 .button_type_operation {
   font-size: 36px;
 }
@@ -59,8 +54,13 @@
   font-size: 24px;
 }
 
-.button_type_reset {
+.button_type_clear {
   background: linear-gradient(25deg, #9cc9dc, #68a4c0);
+}
+
+.square-symbol {
+  width: 31px;
+  height: 19px;
 }
 
 .backspace-symbol {
