@@ -52,7 +52,7 @@ export const buttons = [
   { id: 'one', dataType: 'number', value: 1, children: 1 },
   { id: 'two', dataType: 'number', value: 2, children: 2 },
   { id: 'three', dataType: 'number', value: 3, children: 3 },
-  { id: 'minus', dataType: 'operation', value: 'SUBTRACT', children: '-' },
+  { id: 'subtract', dataType: 'operation', value: 'SUBTRACT', children: '-' },
   { id: 'zero', dataType: 'number', value: 0, children: 0 },
   { id: 'decimal', dataType: 'number', value: '.', children: '.' },
   { id: 'equals', dataType: 'equals', value: 'EQUALS', children: '=' },

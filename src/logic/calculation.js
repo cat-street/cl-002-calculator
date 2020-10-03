@@ -3,7 +3,9 @@ import { operation } from './operation';
 export function calculation({ dataType, value }, state, setState) {
   const printNumber = () => {
     if (state.screenValue === 'Error') return;
-    let valueToAdd = value;
+    let valueToAdd = value.toString();
+    /** Forbid multiple leading zeroes */
+    if (state.screenValue === '0' && valueToAdd === '0') return;
     /** Add decimal, prevent multiple decimals */
     if (value === '.') {
       if (state.screenValue.indexOf('.') !== -1) return;
@@ -46,6 +48,19 @@ export function calculation({ dataType, value }, state, setState) {
 
   const addOperator = () => {
     if (state.screenValue === 'Error') return;
+    /** Chain operations */
+    if (state.lastClicked.dataType === 'number' && state.memValue) {
+      const result = calculate();
+      setState({
+        ...state,
+        screenValue: result,
+        operator: value,
+        memValue: result,
+        tempValue: '',
+        lastClicked: { dataType, value },
+      });
+      return;
+    }
     /** Set temporary state for negation */
     if (state.lastClicked.dataType === 'operation' && value === 'SUBTRACT') {
       setState({ ...state, negate: true });
@@ -56,23 +71,17 @@ export function calculation({ dataType, value }, state, setState) {
       operator: value,
       tempValue: '',
       lastClicked: { dataType, value },
+      negate: false,
     });
   };
 
   const calculate = () => {
     /** Set temporary value for multiple equals pressing */
-    const result = operation(
+    return operation(
       state.memValue,
       state.operator,
       state.tempValue || state.screenValue
     );
-    setState({
-      ...state,
-      screenValue: result,
-      memValue: result,
-      tempValue: state.tempValue || state.screenValue,
-      lastClicked: { dataType, value },
-    });
   };
 
   const clear = () => {
@@ -86,6 +95,11 @@ export function calculation({ dataType, value }, state, setState) {
     });
   };
 
+  /**
+   * TODO: Memory functions
+   * TODO: Advanced functions
+   * TODO: Negating
+   */
   if (dataType === 'number') {
     printNumber();
   } else if (dataType === 'operation') {
@@ -93,6 +107,13 @@ export function calculation({ dataType, value }, state, setState) {
   } else if (dataType === 'clear') {
     clear();
   } else if (dataType === 'equals' && state.memValue) {
-    calculate();
+    const result = calculate();
+    setState({
+      ...state,
+      screenValue: result,
+      memValue: result,
+      tempValue: (state.tempValue || state.screenValue),
+      lastClicked: { dataType, value },
+    });
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Screen.css';
 
+/** TODO: Screen limit */
 export function Screen({ value }) {
   return (
     <div className="calculator__screen-container">
