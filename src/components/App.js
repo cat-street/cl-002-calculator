@@ -11,6 +11,9 @@ function App() {
     screenValue: '',
     operator: '',
     memValue: '',
+    tempValue: '',
+    lastClicked: {},
+    negate: false
   });
 
   const handleChange = (value) => {

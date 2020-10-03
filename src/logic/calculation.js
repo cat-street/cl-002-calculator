@@ -1,14 +1,8 @@
 import { operation } from './operation';
 
-/** Temporary variable for negation in calculation */
-let tempOperator = null;
-/** Calculation in progress variable */
-let currentOperation = null;
-/** Temporary value for multiple equals pressing */
-let tmpValue = null;
-
 export function calculation({ dataType, value }, state, setState) {
   const printNumber = () => {
+    if (state.screenValue === 'Error') return;
     let valueToAdd = value;
     /** Add decimal, prevent multiple decimals */
     if (value === '.') {
@@ -16,43 +10,80 @@ export function calculation({ dataType, value }, state, setState) {
       if (!state.screenValue) valueToAdd = '0.';
     }
     /** Save first value and start next value if operation was pressed */
-    if (currentOperation) {
+    if (state.lastClicked.dataType === 'operation') {
       /** Negate value if minus was pressed after first operation */
-      if (tempOperator) {
+      if (state.negate) {
         valueToAdd = -valueToAdd;
-        tempOperator = null;
       }
       setState({
         ...state,
         screenValue: valueToAdd.toString(),
         memValue: state.screenValue,
+        lastClicked: { dataType, value },
+        negate: false,
       });
-      currentOperation = null;
+      return;
+    }
+    /** New calculation if equals was pressed */
+    if (state.lastClicked.dataType === 'equals') {
+      setState({
+        screenValue: valueToAdd.toString(),
+        operator: '',
+        memValue: '',
+        tempValue: '',
+        lastClicked: { dataType, value },
+        negate: false,
+      });
       return;
     }
     /** Update state with number */
-    setState({ ...state, screenValue: (state.screenValue += valueToAdd) });
+    setState({
+      ...state,
+      screenValue: (state.screenValue += valueToAdd),
+      lastClicked: { dataType, value },
+    });
   };
 
   const addOperator = () => {
-    /** Reset negation variable if another operation was pressed */
-    if (tempOperator) tempOperator = null;
-    /** Reset value for multiple equals pressing */
-    tmpValue = null;
-    /** Set temporary operator for negation */
-    if (state.operator && value === 'SUBTRACT') {
-      tempOperator = value;
+    if (state.screenValue === 'Error') return;
+    /** Set temporary state for negation */
+    if (state.lastClicked.dataType === 'operation' && value === 'SUBTRACT') {
+      setState({ ...state, negate: true });
       return;
     }
-    currentOperation = value;
-    setState({ ...state, operator: value });
+    setState({
+      ...state,
+      operator: value,
+      tempValue: '',
+      lastClicked: { dataType, value },
+    });
+  };
+
+  const calculate = () => {
+    /** Set temporary value for multiple equals pressing */
+    const result = operation(
+      state.memValue,
+      state.operator,
+      state.tempValue || state.screenValue
+    );
+    setState({
+      ...state,
+      screenValue: result,
+      memValue: result,
+      tempValue: state.tempValue || state.screenValue,
+      lastClicked: { dataType, value },
+    });
   };
 
   const clear = () => {
-    tempOperator = null;
-    currentOperation = null;
-    tmpValue = null;
-    setState({ screenValue: '', operator: '', memValue: '' });
+    setState({
+      screenValue: '',
+      operator: '',
+      memValue: '',
+      tempValue: '',
+      lastClicked: {},
+      negate: false,
+    });
   };
 
   if (dataType === 'number') {
@@ -62,9 +93,6 @@ export function calculation({ dataType, value }, state, setState) {
   } else if (dataType === 'clear') {
     clear();
   } else if (dataType === 'equals' && state.memValue) {
-    /** Set value for multiple equals pressing */
-    if (!tmpValue) tmpValue = state.screenValue;
-    const result = operation(state.memValue, state.operator, tmpValue);
-    setState({ ...state, screenValue: result, memValue: result });
+    calculate();
   }
 }
