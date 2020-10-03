@@ -12,7 +12,7 @@ function App() {
     operator: '',
     memValue: '',
     tempValue: '',
-    lastClicked: {},
+    lastClicked: '',
     negate: false
   });
 

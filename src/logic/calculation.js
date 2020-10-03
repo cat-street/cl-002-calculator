@@ -1,6 +1,9 @@
-import { operation } from './operation';
+import { operation, advanced } from './operation';
 
 export function calculation({ dataType, value }, state, setState) {
+  /** Temporary variable for calculations */
+  let result = null;
+
   const printNumber = () => {
     if (state.screenValue === 'Error') return;
     let valueToAdd = value.toString();
@@ -9,10 +12,11 @@ export function calculation({ dataType, value }, state, setState) {
     /** Add decimal, prevent multiple decimals */
     if (value === '.') {
       if (state.screenValue.indexOf('.') !== -1) return;
-      if (!state.screenValue) valueToAdd = '0.';
+      /** Add 0 before . if starting or continuing calculation */
+      if (!state.screenValue || state.lastClicked === 'operation') valueToAdd = '0.';
     }
     /** Save first value and start next value if operation was pressed */
-    if (state.lastClicked.dataType === 'operation') {
+    if (state.lastClicked === 'operation') {
       /** Negate value if minus was pressed after first operation */
       if (state.negate) {
         valueToAdd = -valueToAdd;
@@ -21,19 +25,19 @@ export function calculation({ dataType, value }, state, setState) {
         ...state,
         screenValue: valueToAdd.toString(),
         memValue: state.screenValue,
-        lastClicked: { dataType, value },
+        lastClicked: dataType,
         negate: false,
       });
       return;
     }
     /** New calculation if equals was pressed */
-    if (state.lastClicked.dataType === 'equals') {
+    if (state.lastClicked === 'equals') {
       setState({
         screenValue: valueToAdd.toString(),
         operator: '',
         memValue: '',
         tempValue: '',
-        lastClicked: { dataType, value },
+        lastClicked: dataType,
         negate: false,
       });
       return;
@@ -42,14 +46,14 @@ export function calculation({ dataType, value }, state, setState) {
     setState({
       ...state,
       screenValue: (state.screenValue += valueToAdd),
-      lastClicked: { dataType, value },
+      lastClicked: dataType,
     });
   };
 
   const addOperator = () => {
     if (state.screenValue === 'Error') return;
     /** Chain operations */
-    if (state.lastClicked.dataType === 'number' && state.memValue) {
+    if (state.lastClicked === 'number' && state.memValue) {
       const result = calculate();
       setState({
         ...state,
@@ -57,12 +61,12 @@ export function calculation({ dataType, value }, state, setState) {
         operator: value,
         memValue: result,
         tempValue: '',
-        lastClicked: { dataType, value },
+        lastClicked: dataType,
       });
       return;
     }
     /** Set temporary state for negation */
-    if (state.lastClicked.dataType === 'operation' && value === 'SUBTRACT') {
+    if (state.lastClicked === 'operation' && value === 'SUBTRACT') {
       setState({ ...state, negate: true });
       return;
     }
@@ -70,8 +74,21 @@ export function calculation({ dataType, value }, state, setState) {
       ...state,
       operator: value,
       tempValue: '',
-      lastClicked: { dataType, value },
+      lastClicked: dataType,
       negate: false,
+    });
+  };
+
+  const advancedOperation = () => {
+    if (state.screenValue === 'Error') return;
+    /** Disable backspace if calculation in progress */
+    if (state.lastClicked === 'operation' && value === 'BACKSPACE')
+      return;
+    result = advanced(state.screenValue, value);
+    setState({
+      ...state,
+      screenValue: result,
+      lastClicked: dataType,
     });
   };
 
@@ -84,36 +101,41 @@ export function calculation({ dataType, value }, state, setState) {
     );
   };
 
+  const calculateHandler = () => {
+    if (state.screenValue === 'Error') return;
+    result = calculate();
+    setState({
+      ...state,
+      screenValue: result,
+      memValue: result,
+      tempValue: state.tempValue || state.screenValue,
+      lastClicked: dataType,
+    });
+  };
+
   const clear = () => {
     setState({
       screenValue: '',
       operator: '',
       memValue: '',
       tempValue: '',
-      lastClicked: {},
+      lastClicked: '',
       negate: false,
     });
   };
 
   /**
    * TODO: Memory functions
-   * TODO: Advanced functions
-   * TODO: Negating
    */
   if (dataType === 'number') {
     printNumber();
   } else if (dataType === 'operation') {
     addOperator();
+  } else if (dataType === 'advanced') {
+    advancedOperation();
+  } else if (dataType === 'equals' && state.memValue) {
+    calculateHandler();
   } else if (dataType === 'clear') {
     clear();
-  } else if (dataType === 'equals' && state.memValue) {
-    const result = calculate();
-    setState({
-      ...state,
-      screenValue: result,
-      memValue: result,
-      tempValue: (state.tempValue || state.screenValue),
-      lastClicked: { dataType, value },
-    });
   }
 }
