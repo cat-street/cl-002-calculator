@@ -12,8 +12,9 @@ function App() {
     operator: '',
     memValue: '',
     tempValue: '',
-    lastClicked: '',
-    negate: false
+    lastClicked: {},
+    negate: false,
+    memory: '0'
   });
 
   const handleChange = (value) => {
@@ -23,7 +24,7 @@ function App() {
   return (
     <div className="calculator">
       <Top />
-      <Screen value={state.screenValue || '0'} />
+      <Screen value={state.screenValue || '0'} mem={state.memory} />
       <Keyboard handleChange={handleChange} />
     </div>
   );

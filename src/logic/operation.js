@@ -23,7 +23,7 @@ export function operation(firstValue, operation, secondValue) {
   }
 }
 
-export function advanced(screenValue, operation){
+export function advanced(screenValue, operation) {
   const value = Big(screenValue);
 
   if (operation === 'NEGATE') {
@@ -42,6 +42,18 @@ export function advanced(screenValue, operation){
   if (operation === 'BACKSPACE') {
     if (screenValue.length > 1) {
       return value.toString().slice(0, -1);
-    } else return '0';
+    } else return '';
+  }
+}
+
+export function memory(memoryValue, operation, screenValue) {
+  const mem = Big(memoryValue);
+  const value = Big(screenValue);
+
+  if (operation === 'MMINUS') {
+    return mem.minus(value).toString();
+  }
+  if (operation === 'MPLUS') {
+    return mem.plus(value).toString();
   }
 }
