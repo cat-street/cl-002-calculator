@@ -24,4 +24,5 @@ A React calculator with a few advanced functions.
 
 ### To-do
 
+* Refactor, refactor, refactor!
 * Keyboard input
