@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Screen } from './Screen';
 import { Keyboard } from './Keyboard';
 import { Top } from './Top';
@@ -17,9 +17,9 @@ function App() {
     memory: '0'
   });
 
-  const handleChange = (value) => {
+  const handleChange = useCallback((value) => {
     calculation(value, state, setState);
-  };
+  }, [state]);
 
   return (
     <div className="calculator">

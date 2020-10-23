@@ -2,11 +2,14 @@
   padding: 0;
   margin: 0;
   height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
   background-attachment: fixed;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;

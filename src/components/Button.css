@@ -1,18 +1,22 @@
 .button {
-  font-family: inherit;
-  font-size: 30px;
-  border-radius: 7px;
-  border: 0;
   padding: 0;
+  padding-top: 5px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 5px;
-  letter-spacing: -2px;
-  outline: none;
   position: relative;
-  background: linear-gradient(25deg, #525a65, #3b424c);
+
+  font-family: inherit;
+  font-size: 30px;
+  letter-spacing: -2px;
   color: rgba(255, 255, 255, .8);
+
+  border-radius: 7px;
+  border: 0;
+  outline: none;
+
+  background: linear-gradient(25deg, #525a65, #3b424c);
   text-shadow: 0 0 2px rgba(255, 255, 255, .2);
   box-shadow: inset 2px -1px 1px 0 rgba(255, 255, 255, .2),
     inset -3px 2px 5px 0 rgba(0, 0, 0, .2),
