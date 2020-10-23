@@ -58,3 +58,24 @@ export const buttons = [
   { id: 'equals', dataType: 'equals', value: 'EQUALS', children: '=' },
   { id: 'add', dataType: 'operation', value: 'ADD', children: '+' },
 ];
+
+export const ADD = buttons.find((el) => el.id === 'add').value;
+export const SUBTRACT = buttons.find((el) => el.id === 'subtract').value;
+export const MULTIPLY = buttons.find((el) => el.id === 'multiply').value;
+export const DIVIDE = buttons.find((el) => el.id === 'divide').value;
+export const MPLUS = buttons.find((el) => el.id === 'mplus').value;
+export const MMINUS = buttons.find((el) => el.id === 'mminus').value;
+export const MRC = buttons.find((el) => el.id === 'mrc').value;
+export const BACKSPACE = buttons.find((el) => el.id === 'backspace').value;
+export const NEGATE = buttons.find((el) => el.id === 'negate').value;
+export const PERCENT = buttons.find((el) => el.id === 'percent').value;
+export const SQUARE = buttons.find((el) => el.id === 'square').value;
+
+export const dataTypes = {
+  number: 'number',
+  operation: 'operation',
+  advanced: 'advanced',
+  memory: 'memory',
+  equals: 'equals',
+  clear: 'clear',
+};

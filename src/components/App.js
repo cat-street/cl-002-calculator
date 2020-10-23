@@ -18,7 +18,8 @@ function App() {
   });
 
   const handleChange = useCallback((value) => {
-    calculation(value, state, setState);
+    const result = calculation(value, state);
+    if (result) setState(result);
   }, [state]);
 
   return (
