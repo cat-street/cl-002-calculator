@@ -11,16 +11,16 @@ export function operation(
   const second = Big(secondValue);
 
   switch (operation) {
-    case ADD: {
+    case ADD.value: {
       return first.plus(second).toString();
     }
-    case SUBTRACT: {
+    case SUBTRACT.value: {
       return first.minus(second).toString();
     }
-    case MULTIPLY: {
+    case MULTIPLY.value: {
       return first.times(second).toString();
     }
-    case DIVIDE: {
+    case DIVIDE.value: {
       /** Forbid dividing by zero */
       if (secondValue === '0') {
         return 'Error';
@@ -40,20 +40,20 @@ export function advanced(
   const value = Big(screenValue);
 
   switch (operation) {
-    case NEGATE: {
+    case NEGATE.value: {
       return (-value).toString();
     }
-    case PERCENT: {
+    case PERCENT.value: {
       return (value * 0.01).toString();
     }
     /** Forbid square root for negative numbers */
-    case SQUARE: {
+    case SQUARE.value: {
       if (value < 0) {
         return 'Error';
       }
       return value.sqrt().toString();
     }
-    case BACKSPACE: {
+    case BACKSPACE.value: {
       if (screenValue.length > 1) {
         return value.toString().slice(0, -1);
       } else return '';
@@ -68,10 +68,10 @@ export function memory(memoryValue, operation, screenValue, { MMINUS, MPLUS }) {
   const value = Big(screenValue);
 
   switch (operation) {
-    case MMINUS: {
+    case MMINUS.value: {
       return mem.minus(value).toString();
     }
-    case MPLUS: {
+    case MPLUS.value: {
       return mem.plus(value).toString();
     }
     default:

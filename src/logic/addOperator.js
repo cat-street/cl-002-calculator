@@ -25,7 +25,7 @@ export const addOperator = (
   /** Set temporary state for negation */
   if (
     state.lastClicked.dataType === dataTypes.operation &&
-    value === buttons.SUBTRACT
+    value === buttons.SUBTRACT.value
   ) {
     return { ...state, negate: true };
   }

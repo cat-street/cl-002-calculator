@@ -10,7 +10,7 @@ export function Keyboard({ handleChange }) {
 
   return (
     <div className="calculator__keyboard">
-      {buttons.map((el) => (
+      {Object.values(buttons).map((el) => (
         <Button
           key={el.id}
           id={el.id}

@@ -4,20 +4,7 @@ import { calculateHandler } from './calculateHandler';
 import { advancedOperations } from './advancedOperations';
 import { memoryHandler } from './memoryHandler';
 import { errorHandler } from '../utils/helpers';
-import {
-  ADD,
-  SUBTRACT,
-  MULTIPLY,
-  DIVIDE,
-  BACKSPACE,
-  NEGATE,
-  PERCENT,
-  SQUARE,
-  MPLUS,
-  MMINUS,
-  MRC,
-  dataTypes,
-} from '../utils/constants';
+import { buttons, dataTypes } from '../utils/constants';
 
 export function calculation(value, state) {
   switch (value.dataType) {
@@ -28,7 +15,7 @@ export function calculation(value, state) {
       return addOperator(
         value,
         state,
-        { ADD, SUBTRACT, MULTIPLY, DIVIDE },
+        buttons,
         errorHandler,
         dataTypes
       );
@@ -37,20 +24,20 @@ export function calculation(value, state) {
       return advancedOperations(
         value,
         state,
-        { BACKSPACE, NEGATE, PERCENT, SQUARE },
+        buttons,
         errorHandler,
         dataTypes
       );
     }
     case dataTypes.memory: {
-      return memoryHandler(value, state, { MPLUS, MMINUS, MRC }, errorHandler);
+      return memoryHandler(value, state, buttons, errorHandler);
     }
     case dataTypes.equals: {
       if (state.memValue) {
         return calculateHandler(
           value,
           state,
-          { ADD, SUBTRACT, MULTIPLY, DIVIDE },
+          buttons,
           errorHandler
         );
       } else return;

@@ -22,54 +22,67 @@ const backspace = (
   </svg>
 );
 
-export const buttons = [
-  { id: 'clear', dataType: 'clear', value: 'C', children: 'C' },
-  { id: 'mrc', dataType: 'memory', value: 'MRC', children: 'MRC' },
-  { id: 'mminus', dataType: 'memory', value: 'MMINUS', children: 'M-' },
-  { id: 'mplus', dataType: 'memory', value: 'MPLUS', children: 'M+' },
-  { id: 'negate', dataType: 'advanced', value: 'NEGATE', children: '+/-' },
-  { id: 'percent', dataType: 'advanced', value: 'PERCENT', children: '%' },
-  {
+export const buttons = {
+  CLEAR: { id: 'clear', dataType: 'clear', value: 'C', children: 'C' },
+  MRC: { id: 'mrc', dataType: 'memory', value: 'MRC', children: 'MRC' },
+  MMINUS: { id: 'mminus', dataType: 'memory', value: 'MMINUS', children: 'M-' },
+  MPLUS: { id: 'mplus', dataType: 'memory', value: 'MPLUS', children: 'M+' },
+  NEGATE: {
+    id: 'negate',
+    dataType: 'advanced',
+    value: 'NEGATE',
+    children: '+/-',
+  },
+  PERCENT: {
+    id: 'percent',
+    dataType: 'advanced',
+    value: 'PERCENT',
+    children: '%',
+  },
+  SQUARE: {
     id: 'square',
     dataType: 'advanced',
     value: 'SQUARE',
     children: square,
   },
-  {
+  BACKSPACE: {
     id: 'backspace',
     dataType: 'advanced',
     value: 'BACKSPACE',
     children: backspace,
   },
-  { id: 'seven', dataType: 'number', value: 7, children: 7 },
-  { id: 'eight', dataType: 'number', value: 8, children: 8 },
-  { id: 'nine', dataType: 'number', value: 9, children: 9 },
-  { id: 'divide', dataType: 'operation', value: 'DIVIDE', children: '÷' },
-  { id: 'four', dataType: 'number', value: 4, children: 4 },
-  { id: 'five', dataType: 'number', value: 5, children: 5 },
-  { id: 'six', dataType: 'number', value: 6, children: 6 },
-  { id: 'multiply', dataType: 'operation', value: 'MULTIPLY', children: '×' },
-  { id: 'one', dataType: 'number', value: 1, children: 1 },
-  { id: 'two', dataType: 'number', value: 2, children: 2 },
-  { id: 'three', dataType: 'number', value: 3, children: 3 },
-  { id: 'subtract', dataType: 'operation', value: 'SUBTRACT', children: '-' },
-  { id: 'zero', dataType: 'number', value: 0, children: 0 },
-  { id: 'decimal', dataType: 'number', value: '.', children: '.' },
-  { id: 'equals', dataType: 'equals', value: 'EQUALS', children: '=' },
-  { id: 'add', dataType: 'operation', value: 'ADD', children: '+' },
-];
-
-export const ADD = buttons.find((el) => el.id === 'add').value;
-export const SUBTRACT = buttons.find((el) => el.id === 'subtract').value;
-export const MULTIPLY = buttons.find((el) => el.id === 'multiply').value;
-export const DIVIDE = buttons.find((el) => el.id === 'divide').value;
-export const MPLUS = buttons.find((el) => el.id === 'mplus').value;
-export const MMINUS = buttons.find((el) => el.id === 'mminus').value;
-export const MRC = buttons.find((el) => el.id === 'mrc').value;
-export const BACKSPACE = buttons.find((el) => el.id === 'backspace').value;
-export const NEGATE = buttons.find((el) => el.id === 'negate').value;
-export const PERCENT = buttons.find((el) => el.id === 'percent').value;
-export const SQUARE = buttons.find((el) => el.id === 'square').value;
+  SEVEN: { id: 'seven', dataType: 'number', value: 7, children: 7 },
+  EIGHT: { id: 'eight', dataType: 'number', value: 8, children: 8 },
+  NINE: { id: 'nine', dataType: 'number', value: 9, children: 9 },
+  DIVIDE: {
+    id: 'divide',
+    dataType: 'operation',
+    value: 'DIVIDE',
+    children: '÷',
+  },
+  FOUR: { id: 'four', dataType: 'number', value: 4, children: 4 },
+  FIVE: { id: 'five', dataType: 'number', value: 5, children: 5 },
+  SIX: { id: 'six', dataType: 'number', value: 6, children: 6 },
+  MULTIPLY: {
+    id: 'multiply',
+    dataType: 'operation',
+    value: 'MULTIPLY',
+    children: '×',
+  },
+  ONE: { id: 'one', dataType: 'number', value: 1, children: 1 },
+  TWO: { id: 'two', dataType: 'number', value: 2, children: 2 },
+  THREE: { id: 'three', dataType: 'number', value: 3, children: 3 },
+  SUBTRACT: {
+    id: 'subtract',
+    dataType: 'operation',
+    value: 'SUBTRACT',
+    children: '-',
+  },
+  ZERO: { id: 'zero', dataType: 'number', value: 0, children: 0 },
+  DECIMAL: { id: 'decimal', dataType: 'number', value: '.', children: '.' },
+  EQUALS: { id: 'equals', dataType: 'equals', value: 'EQUALS', children: '=' },
+  ADD: { id: 'add', dataType: 'operation', value: 'ADD', children: '+' },
+};
 
 export const dataTypes = {
   number: 'number',

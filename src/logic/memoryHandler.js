@@ -8,14 +8,14 @@ export const memoryHandler = (
 ) => {
   if (errorHandler(state.screenValue)) return;
 
-  if (value === MPLUS || value === MMINUS) {
+  if (value === MPLUS.value || value === MMINUS.value) {
     const result = memory(state.memory, value, state.screenValue, {
       MMINUS,
       MPLUS,
     });
     return { ...state, memory: result, lastClicked: { dataType, value } };
-  } else if (value === MRC) {
-    if (state.lastClicked.value === MRC) {
+  } else if (value === MRC.value) {
+    if (state.lastClicked.value === MRC.value) {
       return { ...state, memory: '0' };
     }
 

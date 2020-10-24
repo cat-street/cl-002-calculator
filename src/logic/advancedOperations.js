@@ -13,7 +13,7 @@ export const advancedOperations = (
   if (
     (state.lastClicked.dataType === dataTypes.operation ||
       !state.screenValue) &&
-    value === buttons.BACKSPACE
+    value === buttons.BACKSPACE.value
   )
     return;
 
